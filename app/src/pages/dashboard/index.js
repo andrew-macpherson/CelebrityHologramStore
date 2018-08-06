@@ -19,6 +19,8 @@ import {setUser,logOut} from 'actions/user';
 import {resetHolograms,addEdit,deleteHologram} from 'actions/hologram';
 
 import Holograms from 'components/holograms.js';
+import Dropzone from 'react-dropzone';
+const upload = require('superagent');
 
 
 class Index extends React.Component{
@@ -30,6 +32,7 @@ class Index extends React.Component{
 		this.handelOnSubmit = this.handelOnSubmit.bind(this);
 		this.deleteHologram = this.deleteHologram.bind(this);
 		this.logOut = this.logOut.bind(this);
+		this.onDrop = this.onDrop.bind(this);
 	}
 
 	componentDidMount(){
@@ -72,6 +75,21 @@ class Index extends React.Component{
 		this.props.logOut();
 	}
 
+	onDrop(files){
+		if(files.length > 0){
+			upload.post(constants.API_BASE_URL+'/upload')
+			.attach('image', files[0])
+			.end((err, res) => {
+				if (err){
+					alert('Error uploading your image');
+				}else{
+					console.log(res.text);
+					this.props.updateValue(res.text,'image');
+				}
+			})
+		}
+	}
+
 	render(){
 		return(
 			<div className="container">
@@ -106,6 +124,14 @@ class Index extends React.Component{
 								<label>Price</label>
 								<input name="password" className="form-control" type="text" value={this.props.hologram.price} onChange={(event) => this.props.updateValue(event.target.value,'price')} />
 							</div>
+
+							<div className="form-group">
+								<label>Image</label>
+								<Dropzone className="dropzoneUploader" activeClassName="active" rejectClassName="rejected" onDrop={this.onDrop} accept="image/*">
+					              <div>To change your image try dropping a file here, or click to select a file to upload.</div>
+					            </Dropzone>
+				            </div>
+
 							<div className="form-group aligncenter mt-4">
 								<button type="submit" className="btn btn-lg btn-warning">Add / Edit</button>
 								<button type="button" className="btn btn-lg btn-warning" onClick={(event) => this.clearHologram(event)}>Clear</button>

@@ -10,6 +10,7 @@ import configureStore from './store/configureStore';
 //Import History Component
 import history from './utils/history';
 
+
 //Import Page Components
 import Index from 'pages/index.js';
 import Login from 'pages/login.js';
@@ -36,14 +37,23 @@ class App extends React.Component {
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
+    //auth.loggedIn() ? (
       <Component {...props}/>
+    //) : (
+    //  <Redirect to={{
+    //    pathname: '/'
+    //  }}/>
+    //)
   )}/>
 )
 
 
-ReactDOM.render(
-  <Provider store={store}>
-  	<Router history={history}>
-    		<App />
-  	</Router>
-  </Provider>, document.getElementById('root'));
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Provider store={store}>
+    <Router history={history}>
+        <App />
+    </Router>
+  </Provider>, div);
+  ReactDOM.unmountComponentAtNode(div);
+});

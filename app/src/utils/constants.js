@@ -3,15 +3,15 @@ const APP_ENV = process.env.REACT_APP_ENV;
 if(APP_ENV === 'development') {
     var URL          = 'http://localhost:3000';
     var API_BASE_URL = 'http://localhost:3001';
-    var UPLOADS_URL = 'http://localhost:8888/test/app';
+    var UPLOADS_URL = 'http://localhost:8888/test';
 } else if(APP_ENV === 'production') {
     var URL          = 'http://localhost:3000';
     var API_BASE_URL = 'http://localhost:3001';
-    var UPLOADS_URL = 'http://localhost:8888/test/app';
+    var UPLOADS_URL = 'http://localhost:8888/test';
 } else { // local
     var URL          = 'http://localhost:3000';
     var API_BASE_URL = 'http://localhost:3001';
-    var UPLOADS_URL = 'http://localhost:8888/test/app';
+    var UPLOADS_URL = 'http://localhost:8888/test';
 }
 
 export {URL};

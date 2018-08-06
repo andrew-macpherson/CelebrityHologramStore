@@ -1,11 +1,16 @@
 import React from 'react';
+import * as constants from 'utils/constants';
 
 export const Hologram = ({hologram}) => {
 	return(
-		<div>
-			<h3>{hologram.firstName} {hologram.lastName}</h3>
-			<p>${hologram.price}</p>
-			<p>{hologram.description}</p>
+		<div className="card" >
+			<img src={constants.UPLOADS_URL+'/uploads/'+hologram.image} />
+			<div className="card-body">
+				<h5 className="card-title">{hologram.firstName} {hologram.lastName}</h5>
+				<p className="card-text">{hologram.description}</p>
+				<p>${hologram.price}</p>
+				<a href="#" className="btn btn-primary">Go somewhere</a>
+			</div>
 		</div>
 	)
 }

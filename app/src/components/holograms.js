@@ -28,11 +28,13 @@ class Holograms extends React.Component{
 		return(
 			<div className="row">
 				<div className="col-4">
-					{this.props.holograms.map(function(hologram,index){
+					<ul class="list-group">
+						{this.props.holograms.map(function(hologram,index){
 						return (
-							<HologramButton key={index} hologram={hologram} handleOnClick={this.selectHologram} />
-						)
-					},this)}
+							<HologramButton key={index} hologram={hologram} handleOnClick={this.selectHologram} active={(this.props.hologram !== undefined && this.props.hologram.id === hologram.id ? true : false )} />
+							)
+						},this)}
+					</ul>
 				</div>
 
 				<div className="col-8">

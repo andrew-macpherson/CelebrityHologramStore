@@ -2,11 +2,6 @@
 import history from 'utils/history';
 import api from 'utils/api.js';
 
-//Import spinner
-import {spinnerBegin,spinnerEnd} from 'actions/common.js';
-//Import toastr
-import {toastr} from 'react-redux-toastr';
-
 var Cookies = require('js-cookie');
 
 export function resetUser() {
@@ -26,8 +21,6 @@ export function setUser(user){
 export function login(username,password) {
     return (dispatch) => {
 
-        dispatch(spinnerBegin());
-
         var data = {
             username:username,
             password:password
@@ -37,14 +30,12 @@ export function login(username,password) {
 
 		api.login(data,(success,err,data) => {
 			if(success === true){
-				dispatch(spinnerEnd());
                 dispatch(setUser(data.user));
 
                 history.push('/dashboard');
 
 			}else{
-                toastr.error('Error', 'There was an error: '+err);
-		        dispatch(spinnerEnd());
+
 			}
 		});
     };

@@ -9,14 +9,7 @@ export class HologramButton extends React.Component{
 
 	render(){
 		return(
-			<button onClick={(event) => this.handleOnClick(event)}>{this.props.hologram.firstName} {this.props.hologram.lastName}</button>
+			<button class={"list-group-item list-group-item-action "+ (this.props.active ? "active":"")} onClick={(event) => this.handleOnClick(event)}>{this.props.hologram.firstName} {this.props.hologram.lastName}</button>
 		)
 	}
 }
-/*
-export const HologramButton = ({hologram,handleOnClick}) => {
-	return(
-		<button onClick={(event,hologram) => handleOnClick()}>{hologram.firstName} {hologram.lastName}</button>
-	)
-}
-*/

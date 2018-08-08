@@ -15,6 +15,8 @@ export const hologram = (state = initState,action) => {
 				...state,
 				[action.item_to_change]: action.new_value
 			}
+
+			console.log(newInputState);
 			
 			return newInputState;
 		case "SET_HOLOGRAM":

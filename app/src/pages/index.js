@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Holograms from 'components/holograms.js';
+import HologramList from 'components/HologramList.js';
 import {Hologram} from 'components/hologram.js';
 
 
@@ -15,12 +15,14 @@ class Index extends React.Component{
 				</div>
 				<div className="row">
 					<div className="col-4">
-						<Holograms hologram={this.props.hologram}  />
+						<HologramList hologram={this.props.hologram}  />
 					</div>
 
 					<div className="col-4">
-						{this.props.hologram.id !== '' &&
+						{this.props.hologram.id !== '' ?
 							<Hologram hologram={this.props.hologram} />
+							:
+							<p>Select a Celebrity Hologrram from the left.</p>
 						}
 					</div>
 				</div>

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow, mount, render } from 'enzyme';
 
-import {HologramButton} from 'components/hologramButton.js';
+import {HologramButton} from 'components/hologramButton';
 
 configure({ adapter: new Adapter() });
 

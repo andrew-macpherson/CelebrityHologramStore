@@ -6,8 +6,7 @@ var algo = 'aes-128-cbc';
 
 var user = function (app) {
 
-
-  // List of Celebrity Holograms
+  // Test a password
   app.get("/passwordTest", function (req, res) {
     // Get the ID param to use for our search. 
     var mykey = crypto.createCipher(algo, 'rbcVenturesPass');
@@ -18,13 +17,11 @@ var user = function (app) {
 
 
 
-  // List of Celebrity Holograms
+  // Login User
   app.post("/login", function (req, res) {
     // Get the ID param to use for our search. 
     var username = req.body.username;
     var password = req.body.password;
-
-    // @todo: simple validation 
 
     //Encrypt password
     var mykey = crypto.createCipher(algo, 'rbcVenturesPass');

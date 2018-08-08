@@ -4,9 +4,9 @@ var faker = require("faker");
 var connection = require('../db.js');
 var server = require('../app.js');
 
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let should = chai.should();
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+var should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -23,9 +23,6 @@ describe('Holograms', () => {
 	    });
     });
     
-
-    //Before tests run empty holograms database table. 
-
     
 
     // Test to add hologram

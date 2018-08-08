@@ -1,6 +1,8 @@
-var faker = require("faker");
 var connection = require('../db.js');
 
+var multer = require('multer');
+var fs = require('fs');
+var Jimp = require("jimp");
 
 var hologram = function (app) {
 
@@ -8,14 +10,13 @@ var hologram = function (app) {
 
   // Add a Celebrity Hologram
   app.post("/hologram", function (req, res) {
-    // @todo: Validate
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var image = req.body.image;
     var description = req.body.description;
     var price = req.body.price;
-
     var userId = false;
+    
     if(req.body.id !== undefined){
       userId = req.body.id;
     }
@@ -114,6 +115,59 @@ var hologram = function (app) {
         res.status(200).send(data);  
       }
     })
+    
+  });
+
+
+
+
+
+
+  // Upload File
+  app.post("/upload", function (req, res) {
+
+    var uploadedFileName = '';
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            // checking and creating uploads folder where files will be uploaded
+            var dirPath = '../uploads/'
+            if (!fs.existsSync(dirPath)) {
+                var dir = fs.mkdirSync(dirPath);
+            }
+            cb(null, dirPath + '/');
+        },
+        filename: function (req, file, cb) {
+            var ext = file.originalname.substring(file.originalname.lastIndexOf("."));
+            var fileName = Date.now() + ext;
+            uploadedFileName = fileName;
+            cb(null, fileName);
+        }
+    });
+
+    var upload = multer({
+        storage: storage
+    }).array('image', 12);
+
+    upload(req, res, function (err) {
+        if (err) {
+            // An error occurred when uploading
+            res.status(400).send({err:err});
+        }
+
+        // RESIZE IMAGE
+        Jimp.read("../uploads/"+uploadedFileName, function (err, image) {
+            if (err){
+                console.log(err);
+                throw err;
+            }
+            image.scaleToFit(375, Jimp.AUTO)
+             .quality(100)
+             .write("../uploads/thumbs/"+uploadedFileName, function(){
+                res.status(200).send(uploadedFileName);  
+             });
+        });
+
+    });
     
   });
 

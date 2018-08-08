@@ -17,7 +17,7 @@ import {changeInput} from 'actions/common';
 import {setUser,logOut} from 'actions/user';
 import {resetHolograms,addEdit,deleteHologram} from 'actions/hologram';
 
-import Holograms from 'components/holograms.js';
+import HologramList from 'components/HologramList.js';
 import {Hologram} from 'components/hologram.js';
 import Dropzone from 'react-dropzone';
 const upload = require('superagent');
@@ -104,7 +104,7 @@ class Index extends React.Component{
 
 				<div className="row">
 					<div className="col-4">
-						<Holograms hologram={this.props.hologram}  />
+						<HologramList hologram={this.props.hologram}  />
 					</div>
 
 					<div className="col-4">
@@ -139,6 +139,11 @@ class Index extends React.Component{
 								<Dropzone className="dropzoneUploader" activeClassName="active" rejectClassName="rejected" onDrop={this.onDrop} accept="image/*">
 					              <div>To change your image try dropping a file here, or click to select a file to upload.</div>
 					            </Dropzone>
+
+					            {this.props.hologram.image !== '' ?
+					            <img src={constants.UPLOADS_URL+'/uploads/'+this.props.hologram.image} />
+					            : <p>No image yet</p> }
+
 				            </div>
 
 							<div className="form-group aligncenter mt-4">

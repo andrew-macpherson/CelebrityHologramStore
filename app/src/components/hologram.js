@@ -9,7 +9,7 @@ export const Hologram = ({hologram}) => {
 				<h5 className="card-title">{hologram.firstName} {hologram.lastName}</h5>
 				<p className="card-text">{hologram.description}</p>
 				<p>${hologram.price}</p>
-				<a href="#" className="btn btn-primary">Go somewhere</a>
+				<a href="#" className="btn btn-primary" onClick={(event) => alert('You now own this hologram')}>Purchase</a>
 			</div>
 		</div>
 	)

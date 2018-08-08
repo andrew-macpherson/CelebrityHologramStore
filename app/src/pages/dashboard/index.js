@@ -19,6 +19,7 @@ import {setUser,logOut} from 'actions/user';
 import {resetHolograms,addEdit,deleteHologram} from 'actions/hologram';
 
 import Holograms from 'components/holograms.js';
+import {Hologram} from 'components/hologram.js';
 import Dropzone from 'react-dropzone';
 const upload = require('superagent');
 
@@ -101,10 +102,19 @@ class Index extends React.Component{
 					</div>
 				</div>
 
-				<Holograms  />
 
 				<div className="row">
-					<div className="col-3">
+					<div className="col-4">
+						<Holograms  />
+					</div>
+
+					<div className="col-4">
+						{this.props.hologram.id !== '' &&
+							<Hologram hologram={this.props.hologram} />
+						}
+					</div>
+
+					<div className="col-4">
 						<h4>Add / edit Hologram</h4>
 						
 						<form method="post" onSubmit={this.handelOnSubmit}>

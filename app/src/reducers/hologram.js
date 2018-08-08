@@ -19,7 +19,6 @@ export const hologram = (state = initState,action) => {
 			return newInputState;
 		case "SET_HOLOGRAM":
 			const newState = Object.assign({},state,action.hologram);
-			console.log(newState);
 			return newState;
 
 		case "RESET_HOLOGRAM":

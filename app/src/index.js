@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route,Redirect} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -20,26 +20,16 @@ let store = configureStore();
 
 
 class App extends React.Component {
-
   render() {
     return (
       <div>
         <Route exact={true} path="/" component={Index} />
         <Route exact={true} path="/login" component={Login} />
-
-        <PrivateRoute exact={false} path="/dashboard" component={Dashboard}/>
+        <Route exact={true} path="/dashboard" component={Dashboard} />
       </div>
     )
   }
 }
-
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-      <Component {...props}/>
-  )}/>
-)
-
 
 ReactDOM.render(
   <Provider store={store}>

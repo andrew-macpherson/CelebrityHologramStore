@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 //Import action
 import {getAll,setHologram} from 'actions/hologram.js';
 
+import {Hologram} from 'components/hologram.js';
 import {HologramButton} from 'components/hologramButton.js';
 
 
-class Holograms extends React.Component{
+class HologramButtons extends React.Component{
 
 	componentDidMount(){
 		this.props.getAll();
@@ -23,13 +24,16 @@ class Holograms extends React.Component{
 
 	render(){
 		return(
-			<ul class="list-group">
-				{this.props.holograms.map(function(hologram,index){
-				return (
-					<HologramButton key={index} hologram={hologram} handleOnClick={this.selectHologram} active={(this.props.hologram !== undefined && this.props.hologram.id === hologram.id ? true : false )} />
-					)
-				},this)}
-			</ul>
+			<div className="col-4">
+				<ul class="list-group">
+					{this.props.holograms.map(function(hologram,index){
+					return (
+						<HologramButton key={index} hologram={hologram} handleOnClick={this.selectHologram} active={(this.props.hologram !== undefined && this.props.hologram.id === hologram.id ? true : false )} />
+						)
+					},this)}
+				</ul>
+			</div>
+
 		);
 	}
 }
@@ -49,4 +53,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Holograms);
+export default connect(mapStateToProps,mapDispatchToProps)(HologramButtons);

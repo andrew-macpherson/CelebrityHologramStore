@@ -26,8 +26,6 @@ export function login(username,password) {
             password:password
         }
 
-        console.log(data);
-
 		api.login(data,(success,err,data) => {
 			if(success === true){
                 dispatch(setUser(data.user));

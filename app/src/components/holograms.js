@@ -23,7 +23,7 @@ class Holograms extends React.Component{
 
 	render(){
 		return(
-			<ul class="list-group">
+			<ul className="list-group">
 				{this.props.holograms.map(function(hologram,index){
 				return (
 					<HologramButton key={index} hologram={hologram} handleOnClick={this.selectHologram} active={(this.props.hologram !== undefined && this.props.hologram.id === hologram.id ? true : false )} />

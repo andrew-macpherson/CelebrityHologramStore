@@ -5,7 +5,6 @@ import {API_BASE_URL} from 'utils/constants';
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 
 import history from 'utils/history';
 
@@ -94,7 +93,7 @@ class Index extends React.Component{
 	render(){
 		return(
 			<div className="container">
-				<div className="row">
+				<div className="row mb-5">
 					<div className="col-12 text-center">
 						<h1>Dashboard</h1>
 						<p>Welcome back {this.props.currentUser.username}!</p>
@@ -105,7 +104,7 @@ class Index extends React.Component{
 
 				<div className="row">
 					<div className="col-4">
-						<Holograms  />
+						<Holograms hologram={this.props.hologram}  />
 					</div>
 
 					<div className="col-4">

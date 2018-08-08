@@ -4,7 +4,6 @@ import api from 'utils/api.js';
 
 
 export function resetHolograms() {
-    console.log('reset');
     return {
         type: 'RESET_HOLOGRAM'
     };

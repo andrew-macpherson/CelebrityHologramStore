@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Holograms from 'components/holograms.js';
+import {Hologram} from 'components/hologram.js';
 
 
-export default class Index extends React.Component{
+class Index extends React.Component{
 	render(){
 		return(
 			<div className="container">
@@ -11,8 +13,34 @@ export default class Index extends React.Component{
 						<h1>Celebrity Holograms</h1>
 					</div>
 				</div>
-				<Holograms  />
+				<div className="row">
+					<div className="col-4">
+						<Holograms hologram={this.props.hologram}  />
+					</div>
+
+					<div className="col-4">
+						{this.props.hologram.id !== '' &&
+							<Hologram hologram={this.props.hologram} />
+						}
+					</div>
+				</div>
 			</div>
 		);
 	}
 }
+
+function mapStateToProps(state,ownProps){
+	return {
+		hologram: state.hologram
+	}
+}
+
+
+const mapDispatchToProps = dispatch => {
+	return {
+
+	}
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Index);
